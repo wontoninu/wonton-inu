@@ -1,0 +1,56 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Wonton Inu</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #000;
+  color: #fff;
+  text-align: center;
+}
+button {
+  padding: 12px 20px;
+  font-size: 18px;
+  margin-top: 20px;
+}
+canvas {
+  background: #111;
+  display: block;
+  margin: 20px auto;
+}
+</style>
+</head>
+<body>
+<h1>Wonton Inu 🥟🐶</h1>
+<p>Welcome to the official Wonton Inu site</p>
+
+<button onclick="startGame()">Start Wonton Catcher</button>
+<canvas id="game" width="320" height="480"></canvas>
+
+<script>
+const canvas = document.getElementById("game");
+const ctx = canvas.getContext("2d");
+let x = 140;
+
+function startGame() {
+  ctx.clearRect(0,0,320,480);
+  ctx.fillText("Game Started!", 100, 200);
+}
+
+document.addEventListener("touchmove", e => {
+  x = e.touches[0].clientX - canvas.offsetLeft;
+  draw();
+});
+
+function draw() {
+  ctx.clearRect(0,0,320,480);
+  ctx.fillRect(x, 430, 40, 20);
+}
+</script>
+</body>
+</html>
