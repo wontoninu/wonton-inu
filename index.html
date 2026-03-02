@@ -174,6 +174,23 @@ function startGame() {
 
 function gameLoop() {
   if (!gameRunning) return;
+  if (!gameStarted) {
+  ctx.clearRect(0, 0, 320, 480);
+
+  ctx.fillStyle = "#111";
+  ctx.fillRect(0, 0, 320, 480);
+
+  ctx.fillStyle = "#fff";
+  ctx.font = "26px Arial";
+  ctx.textAlign = "center";
+  ctx.fillText("🥟 Tap to Start", 160, 220);
+
+  ctx.font = "16px Arial";
+  ctx.fillStyle = "#aaa";
+  ctx.fillText("Catch the wontons!", 160, 250);
+
+  return;
+}
 
   ctx.clearRect(0, 0, 320, 480);
 
@@ -200,15 +217,19 @@ function gameLoop() {
     wontonX = Math.random() * 280;
   }
 
-  // Miss
-  if (wontonY > 480) {
-    gameRunning = false;
-    ctx.fillStyle = "#fff";
-    ctx.font = "20px Arial";
-    ctx.fillText("Game Over", 95, 200);
-    ctx.fillText("Score: " + score, 105, 240);
-    return;
-  }
+ // Miss
+if (wontonY > 480) {
+  gameRunning = false;
+  gameStarted = false;
+
+  ctx.fillStyle = "#fff";
+  ctx.font = "20px Arial";
+  ctx.textAlign = "center";
+  ctx.fillText("Game Over", 160, 200);
+  ctx.fillText("Score: " + score, 160, 240);
+  ctx.fillText("Tap to restart", 160, 280);
+  return;
+}
 
   // Score
   ctx.fillStyle = "#fff";
