@@ -119,7 +119,6 @@ canvas {
 
   <script>
   console.log("Game loaded");
-requestAnimationFrame(gameLoop);
   const normalFortunes = [
   "Big gains come to patient holders.",
   "Community will take you further than hype.",
@@ -134,7 +133,35 @@ const rareFortunes = [
   "✨ RARE ✨ You will be early when others are late.",
   "✨ RARE ✨ Fortune favors you today — don’t ignore signs."
 ];
+let lastFortune = "";
 
+function crackCookie() {
+  const cookie = document.getElementById("cookie");
+  const text = document.getElementById("fortune-text");
+  const actions = document.getElementById("fortune-actions");
+
+  cookie.classList.add("cracked");
+  cookie.src = "cookie-open.png";
+
+  const isRare = Math.random() < 0.15; // 15% rare chance
+  const fortunePool = isRare ? rareFortunes : normalFortunes;
+
+  lastFortune = fortunePool[Math.floor(Math.random() * fortunePool.length)];
+  text.textContent = lastFortune;
+
+  actions.style.display = "block";
+}
+
+function copyFortune() {
+  navigator.clipboard.writeText(lastFortune);
+  alert("🥠 Fortune copied!");
+}
+
+function shareFortune() {
+  const message = `🥠 My Wonton Inu Fortune:\n\n${lastFortune}`;
+  navigator.clipboard.writeText(message);
+  alert("📤 Fortune copied to share!");
+}
 /* ===== WONTON CATCHER GAME ===== */
 const canvas = document.getElementById("game");
 const ctx = canvas.getContext("2d");
