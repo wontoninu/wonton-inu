@@ -119,7 +119,7 @@ canvas {
 
   <script>
   console.log("Game loaded");
-
+requestAnimationFrame(gameLoop);
   const normalFortunes = [
   "Big gains come to patient holders.",
   "Community will take you further than hype.",
@@ -219,7 +219,6 @@ function gameLoop() {
  // Miss
 if (wontonY > 480) {
   gameRunning = false;
-  gameStarted = false;
 
   ctx.fillStyle = "#fff";
   ctx.font = "20px Arial";
