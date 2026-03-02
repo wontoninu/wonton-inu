@@ -49,7 +49,23 @@ button:hover {
   transform: scale(1.05);
   box-shadow: 0 8px 20px rgba(34, 158, 217, 0.4);
 }
-canvas {
+.confetti {
+  position: fixed;
+  top: -10px;
+  width: 10px;
+  height: 10px;
+  background: gold;
+  animation: fall 2s linear forwards;
+  z-index: 9999;
+}
+
+@keyframes fall {
+  to {
+    transform: translateY(110vh) rotate(720deg);
+    opacity: 0;
+  }
+}
+  canvas {
   background: #111;
   display: block;
   margin: 20px auto;
@@ -94,7 +110,7 @@ canvas {
     alt="Fortune Cookie"
     onclick="crackCookie()"
   />
-
+<audio id="crackSound" src="crack.mp3" preload="auto"></audio>
   <p id="fortune-text"></p>
 
   <div id="fortune-actions" style="display:none;">
@@ -124,13 +140,67 @@ canvas {
   "Your diamond hands will be rewarded.",
   "Something fun is about to surprise you.",
   "Trust the journey, not just the chart.",
-  "A meme today becomes history tomorrow."
+  "A meme today becomes history tomorrow.",
+  "Consistency beats luck.",
+  "You’re earlier than you think.",
+  "Small steps lead to massive pumps.",
+  "Timing + patience = profit.",
+  "A strong floor is forming.",
+  "Your conviction will be tested — hold.",
+  "Momentum is quietly building.",
+  "This project rewards believers.",
+  "Steady hands win.",
+  "Your entry will age well.",
+  "The chart doesn’t show what’s coming.",
+  "Good vibes attract good gains.",
+  "Zoom out. You’re still early.",
+  "The best holders wait.",
+  "The meme has meaning.",
+  "Your patience pays interest.",
+  "Something bullish is brewing.",
+  "A dip is just a setup.",
+  "Community strength matters.",
+  "You found this for a reason.",
+  "The fun hasn’t started yet.",
+  "This will make sense later.",
+  "Your timing isn’t random.",
+  "Believe before it’s obvious.",
+  "The quiet phase ends soon.",
+  "Your hold will be tested — pass.",
+  "Smart money notices culture.",
+  "This meme has legs.",
+  "Don’t underestimate fun.",
+  "Growth takes time.",
+  "The floor is stronger than it looks.",
+  "You’re ahead of the crowd.",
+  "This won’t stay quiet forever.",
+  "Patience is your edge.",
+  "Good entries feel boring.",
+  "Community > charts.",
+  "The setup is forming.",
+  "Let it cook.",
+  "You’ll remember this moment.",
+  "Long term beats fast flips.",
+  "The joke becomes serious.",
+  "Your instincts are right.",
+  "This has staying power.",
+  "Enjoy the ride."
 ];
 
 const rareFortunes = [
   "✨ RARE ✨ Massive opportunity reveals itself soon.",
-  "✨ RARE ✨ You will be early when others are late.",
-  "✨ RARE ✨ Fortune favors you today — don’t ignore signs."
+  "✨ RARE ✨ You are early while others hesitate.",
+  "✨ RARE ✨ Fortune favors your patience.",
+  "✨ RARE ✨ This entry will be remembered.",
+  "✨ RARE ✨ Conviction brings rewards."
+];
+
+const ultraRareFortunes = [
+  "🔥 ULTRA RARE 🔥 Screenshot this moment.",
+  "🔥 ULTRA RARE 🔥 Legendary hold detected.",
+  "🔥 ULTRA RARE 🔥 This fortune hits different.",
+  "🔥 ULTRA RARE 🔥 You found alpha by accident.",
+  "🔥 ULTRA RARE 🔥 Few will see this message."
 ];
 let lastFortune = "";
 
@@ -138,16 +208,32 @@ function crackCookie() {
   const cookie = document.getElementById("cookie");
   const text = document.getElementById("fortune-text");
   const actions = document.getElementById("fortune-actions");
+  const sound = document.getElementById("crackSound");
 
   cookie.classList.add("cracked");
   cookie.src = "cookie-open.png";
 
-  const isRare = Math.random() < 0.15; // 15% rare chance
-  const fortunePool = isRare ? rareFortunes : normalFortunes;
+  if (sound) {
+    sound.currentTime = 0;
+    sound.play();
+  }
 
-  lastFortune = fortunePool[Math.floor(Math.random() * fortunePool.length)];
+  const roll = Math.random();
+  let fortunePool;
+
+  if (roll < 0.03) {
+    fortunePool = ultraRareFortunes;
+    triggerConfetti();
+  } else if (roll < 0.18) {
+    fortunePool = rareFortunes;
+  } else {
+    fortunePool = normalFortunes;
+  }
+
+  lastFortune =
+    fortunePool[Math.floor(Math.random() * fortunePool.length)];
+
   text.textContent = lastFortune;
-
   actions.style.display = "block";
 }
 
