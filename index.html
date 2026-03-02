@@ -133,8 +133,19 @@ Copy Token Address 📋
 <script>
   console.log("Game loaded");
 
-  function openCookie() {
-    alert("Wonton Inu 🚀");
+function openCookie() {
+    document.getElementById("cookieImage").src = "images/cookie-open.png";
+
+    const fortunes = [
+      "Wonton Inu to the moon 🚀",
+      "Diamond paws win 💎🐾",
+      "Big pump energy coming",
+      "Patience pays off 🥟",
+      "Fortune favors the hodler"
+    ];
+
+    const random = Math.floor(Math.random() * fortunes.length);
+    document.getElementById("fortune").innerText = fortunes[random];
   }
   const normalFortunes = [
   "Big gains come to patient holders.",
