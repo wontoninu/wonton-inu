@@ -203,13 +203,23 @@ const ultraRareFortunes = [
   "🔥 ULTRA RARE 🔥 Few will see this message."
 ];
 let lastFortune = "";
+function resetCookie() {
+  const cookie = document.getElementById("cookie");
+  const text = document.getElementById("fortune-text");
+  const actions = document.getElementById("fortune-actions");
 
+  cookie.classList.remove("cracked");
+  cookie.src = "cookie-closed.png";
+
+  text.textContent = "";
+  actions.style.display = "none";
+}
 function crackCookie() {
   const cookie = document.getElementById("cookie");
   const text = document.getElementById("fortune-text");
   const actions = document.getElementById("fortune-actions");
   const sound = document.getElementById("crackSound");
-
+if (cookie.classList.contains("cracked")) return;
   cookie.classList.add("cracked");
   cookie.src = "cookie-open.png";
 
@@ -235,6 +245,7 @@ function crackCookie() {
 
   text.textContent = lastFortune;
   actions.style.display = "block";
+  setTimeout(resetCookie, 5000);
 }
 
 function copyFortune() {
