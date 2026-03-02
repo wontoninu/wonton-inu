@@ -144,7 +144,7 @@ let wontonY = 0;
 let wontonX = Math.random() * 280;
 let score = 0;
 let gameRunning = false;
-
+let gameStarted = false;
 // Player movement
 canvas.addEventListener("touchmove", e => {
   e.preventDefault();
@@ -157,9 +157,14 @@ canvas.addEventListener("touchmove", e => {
 canvas.addEventListener("mousemove", e => {
   playerX = e.offsetX - 20;
 });
+canvas.addEventListener("click", () => {
+  if (!gameRunning) {
+    startGame();
+  }
+});
 
 function startGame() {
-  canvas.style.display = "block";
+  gameStarted = true;
   score = 0;
   wontonY = 0;
   wontonX = Math.random() * 280;
