@@ -102,7 +102,7 @@ Copy Token Address 📋
 
 <button onclick="startGame()">Start Wonton Catcher</button>
   <img id="cookieImage" src="images/cookie.png">
-<canvas id="game" width="320" height="480"></canvas>
+<canvas id="game" width="320" height="480" style="display:none;"></canvas>
 <script>
   console.log("Game loaded");
 
@@ -203,8 +203,13 @@ const ctx = canvas.getContext("2d");
 let x = 140;
 
 function startGame() {
-  ctx.clearRect(0,0,320,480);
-  ctx.fillText("Game Started!", 100, 200);
+  const canvas = document.getElementById("game");
+  canvas.style.display = "block";
+
+  ctx.clearRect(0, 0, 320, 480);
+  ctx.fillStyle = "#00aaff";
+  ctx.font = "20px Arial";
+  ctx.fillText("Wonton Catcher Loading…", 40, 200);
 }
 
 document.addEventListener("touchmove", e => {
