@@ -103,33 +103,6 @@ Copy Token Address 📋
 <button onclick="startGame()">Start Wonton Catcher</button>
   <img id="cookieImage" src="images/cookie.png">
 <canvas id="game" width="320" height="480"></canvas>
-<!-- Instructions -->
-<p id="instructions">
-  🥠 Click the cookie to crack it open.<br>
-  ✨ Rare fortunes appear once per day.<br>
-  📤 Share your fortune with friends!
-</p>
-
-<!-- Cookie -->
-<img
-  id="cookie"
-  src="cookie-closed.png"
-  alt="Fortune Cookie"
-  onclick="crackCookie()"
-  style="width:200px; cursor:pointer;"
-/>
-
-<!-- Sound -->
-<audio id="crack-sound" src="crack.mp3" preload="auto"></audio>
-
-<!-- Fortune text -->
-<p id="fortune-text"></p>
-
-<!-- Actions -->
-<div id="fortune-actions" style="display:none;">
-  <button onclick="copyFortune()">Copy Fortune</button>
-  <button onclick="shareFortune()">Share Fortune</button>
-</div>
 <script>
   console.log("Game loaded");
 
@@ -216,7 +189,7 @@ function shareFortune() {
 
   if (navigator.share) {
     navigator.share({
-      title: "Wonton Fortune",
+      title: "Wonton Fortune", MMO
       text,
       url
     });
