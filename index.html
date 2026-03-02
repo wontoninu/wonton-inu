@@ -123,68 +123,6 @@ const rareFortunes = [
   "✨ RARE ✨ Fortune favors you today — don’t ignore signs."
 ];
 
-let currentFortune = "";
-let crackedToday = false;
-
-function crackCookie() {
-  if (crackedToday) return;
-
-  document.getElementById("crack-sound").play();
-  crackedToday = true;
-
-  const cookie = document.getElementById("cookie");
-  const sound = document.getElementById("crack-sound");
-
-  cookie.classList.add("cracked");
-  cookie.src = "cookie-open.png";
-  sound.play();
-
-  const isRare = isRareFortune();
-  const fortune = isRare
-    ? randomFrom(rareFortunes)
-    : randomFrom(normalFortunes);
-
-  currentFortune = fortune;
-
-  document.getElementById("fortune-text").innerText =
-    (isRare ? "🥠 RARE FORTUNE: " : "🥠 Your Fortune: ") + fortune;
-
-  document.getElementById("fortune-actions").style.display = "block";
-}
-
-function isRareFortune() {
-  const today = new Date().toDateString();
-  const stored = localStorage.getItem("wonton_fortune_day");
-
-  if (stored === today) return false;
-
-  localStorage.setItem("wonton_fortune_day", today);
-  return Math.random() < 0.15; // 15% chance daily rare
-}
-
-function randomFrom(arr) {
-  return arr[Math.floor(Math.random() * arr.length)];
-}
-
-function copyFortune() {
-  navigator.clipboard.writeText(currentFortune);
-  alert("Fortune copied! Send it 🍪");
-}
-
-function shareFortune() {
-  const text = "🥠 My Wonton Fortune: " + currentFortune;
-  const url = window.location.href;
-
-  if (navigator.share) {
-    navigator.share({
-      title: "Wonton Fortune",
-      text,
-      url
-    });
-  } else {
-    navigator.clipboard.writeText(text + " " + url);
-    alert("Fortune copied for sharing!");
-  }
 /* ===== WONTON CATCHER GAME ===== */
 const canvas = document.getElementById("game");
 const ctx = canvas.getContext("2d");
