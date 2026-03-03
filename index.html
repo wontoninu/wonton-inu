@@ -260,7 +260,7 @@ if (cookie.classList.contains("cracked")) return;
     fortunePool[Math.floor(Math.random() * fortunePool.length)];
 
   text.textContent = lastFortune;
-  actions.style.display = "block";
+  actions.style.display = "flex";
   setTimeout(resetCookie, 5000);
 }
 
