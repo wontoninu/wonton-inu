@@ -3,18 +3,68 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Social Buttons</title>
+    <title>Wonton Inu</title>
+    <style>
+        body {
+            background-color: #000000;
+            color: white;
+            margin: 0;
+            padding: 20px;
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+        
+        #banner {
+            width: 100%;
+            max-width: 1200px;
+            height: auto;
+            display: block;
+            margin: 0 auto 30px;
+        }
+        
+        .social-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            align-items: center;
+            justify-content: center;
+            margin-top: 30px;
+        }
+        
+        .social-buttons a,
+        .social-buttons button {
+            padding: 12px 24px;
+            font-size: 16px;
+            background: #229ED9;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+        
+        .social-buttons a:hover,
+        .social-buttons button:hover {
+            background: #1b8cc8;
+            transform: scale(1.05);
+            box-shadow: 0 8px 20px rgba(34, 158, 217, 0.4);
+        }
+    </style>
 </head>
 <body>
+    <img id="banner" src="wonton-banner.png" alt="Wonton Inu Banner">
+    
     <div class="social-buttons">
-        <a href="https://t.me/your_channel" target="_blank">Telegram</a>
-        <a href="https://basescan.com/" target="_blank">BaseScan</a>
-        <button onclick="copyTokenAddress()">Copy Token Address</button>
+        <a href="https://t.me/wontoninu" target="_blank">Join Telegram 🚀</a>
+        <a href="https://basescan.org/token/0x985805bEC842adAB8bb65dc42867e2cdd86546D2" target="_blank">BaseScan 🔍</a>
+        <button onclick="copyTokenAddress()">Copy Token Address 📋</button>
     </div>
 
     <script>
         function copyTokenAddress() {
-            const tokenAddress = 'YOUR_TOKEN_ADDRESS'; // Replace with the actual token address
+            const tokenAddress = '0x985805bEC842adAB8bb65dc42867e2cdd86546D2';
             navigator.clipboard.writeText(tokenAddress).then(() => {
                 alert('Token address copied!');
             });
