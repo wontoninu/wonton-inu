@@ -8,10 +8,22 @@
         body {
             background-color: black;
             color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+        }
+        img {
+            margin-bottom: 40px;
         }
         .social-buttons {
             display: flex;
             gap: 10px;
+            justify-content: center;
+            margin-top: 20px;
         }
         .social-button {
             padding: 10px 15px;
@@ -27,14 +39,14 @@
         .website-link {
             display: block;
             text-align: center;
-            margin: 20px 0;
-            padding: 15px;
+            padding: 15px 30px;
             background-color: white;
             color: black;
             text-decoration: none;
             border-radius: 5px;
             transition: background-color 0.3s;
             font-weight: bold;
+            font-size: 18px;
         }
         .website-link:hover {
             background-color: grey;
